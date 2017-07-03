@@ -1,0 +1,23 @@
+<div class="nav">
+    <div class="col-md-10">
+        <h2>Catalog App<h2>
+    </div>
+    <!-- GOOGLE PLUS SIGN IN-->
+    <div class="col-md-2 padding-top" id="signInButton">
+    {% if 'username' not in session %}
+        <!-- replace data-clientid here with your id-->
+        <span class="g-signin btn btn-success"
+         data-scope="openid email"
+         data-clientid="paste_client_id_here"
+         data-redirecturi="postmessage"
+         data-accesstype="offline"
+         data-cookiepolicy="single_host_origin"
+         data-callback="signInCallback"
+         data-approvalprompt="force"> Login
+        </span>
+    {% else %}
+    <!-- LOGOUT -->
+        <a href="{{url_for('gdisconnect')}}" class="btn btn-warning" role="button">Logout</a>
+    {% endif %}
+    </div>
+</div>

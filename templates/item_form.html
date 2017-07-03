@@ -1,0 +1,50 @@
+{% extends 'main.html' %}
+{% block content %}
+<div class="col-md-12 contentpanel padding-top">
+    <!-- Editing New Items -->
+    {% if item is defined %}
+    <h1> Edit Item: {{item.name}}</h1>
+    <form action="{{url_for('editItem', item=item.name )}}" method='POST'>
+        <p>Name:</br>
+            <input type='text' size='30' name='name' value="{{item.name}}"> </p>
+        <p>Description:</br>
+            <textarea type='text' size='30' name='description' cols="50" rows="10">{{item.description}}</textarea> </p>
+        <p>Category: </br>
+            <select name='category'>
+            {% for c in categories %}
+                {% if c.name == category.name %}
+                <option selected="selected" value="{{ c.id }}" > {{ c.name }} </option>
+                {% else %}
+                <option value="{{ c.id }}"> {{ c.name }} </option>
+                {% endif %}
+            {% endfor %}
+            </select><br><br>
+        <input type='submit' class="btn btn-md btn-success" value='Edit'>
+        <a href="{{url_for('showItemDesc', category=category.name, item=item.name) }}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+
+    {% else %}
+    <!-- Adding New Items -->
+    <h1> New {{category.name}} Item:</h1>
+    <form action="{{url_for('newItem', category=category.name )}}" method='POST'>
+    <p>Name:</br>
+            <input type='text' size='30' name='name' placeholder="Input {{category.name}} item"> </p>
+        <p>Description:</br>
+            <textarea type='text' size='30' name='description' cols="50" rows="10" placeholder="Type Description Here"></textarea></p>
+        <p>Category: </br>
+            <select name='category'>
+            {% for c in categories %}
+                {% if c.name == category.name %}
+                <option selected="selected" value="{{ c.id }}" > {{ c.name }} </option>
+                {% else %}
+                <option value="{{ c.id }}"> {{ c.name }} </option>
+                {% endif %}
+            {% endfor %}
+            </select></p>
+
+        <input type="submit" class="btn btn-md btn-success" value='Create'>
+        <a href="{{url_for('showItems', category=category.name) }}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

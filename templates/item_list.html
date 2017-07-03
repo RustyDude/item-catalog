@@ -1,0 +1,16 @@
+<div class="col-md-10 padded">
+    <div class="additem">
+        <a href="{{url_for('newItem', category=category.name)}}">Add Item</a>
+    </div>
+    <div class="header">
+                    <h3>{{category.name}} ({{items|length}} Items)</h3>
+    </div>
+    {% for item in items %}
+    <div class ="items">
+        <div>
+        <a href="{{url_for('showItemDesc', category=item.category, item=item.name) }}"><b>{{item.name}}</b></a>
+    </div>
+    {% else %}
+    <p><em>No {{category.name}} Items yet available.</em></p>
+    {% endfor %}
+</div>

@@ -1,0 +1,14 @@
+{% block categories %}
+<div class="col-md-2 border-right categories">
+    <div class="categories">
+        <h3>Categories</h3>
+    </div>
+    {% for category in categories %}
+    <div>
+        <a href="{{url_for('showItems', category=category.name) }}"><b>{{category.name}}</b></a>
+    </div>
+    {% else %}
+    <p><em>No Categories yet available.</em></p>
+    {% endfor %}
+</div>
+{% endblock %}

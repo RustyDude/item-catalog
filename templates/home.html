@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="flash col-md-12">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+                {% for message in messages %}
+                    <div class="flash"><strong> {{ message }}</strong></div>
+                {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<div class="col-md-12 contentpanel padding-top">
+    {% include "category_list.html" %}
+    {% if items is defined %}
+        {% include render_html %}
+    {% endif %}
+</div>
+{% endblock %}

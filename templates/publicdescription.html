@@ -1,0 +1,9 @@
+{% extends 'main.html' %}
+{% block content %}
+    <div class="col-md-12 contentpanel padding-top">
+        {% if item is defined %}
+        <h1> {{item.name}}</h1>
+        <p> {{item.description}}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'main.html' %}
+{% block content%}
+<div class="col-md-12 contentpanel padding-top">
+    <h1> Delete Item: {{item.name}}</h1>
+    <h4> Are you sure you want to delete? </h1>
+    <form action="{{ url_for('deleteItem', item=item.name)}}" method='POST'>
+        <input type='submit' class="btn btn-md btn-success" value='Delete'> <a href="{{url_for('showItemDesc', category=category.name, item=item.name) }}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+
+</div>
+{% endblock %}

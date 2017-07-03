@@ -1,0 +1,29 @@
+<div class="col-md-10 padded">
+{% if category is defined %}
+<div class="header">
+                <h3>{{category.name}} ({{items|length}} Items)</h3>
+</div>
+    {% for item in items %}
+    <div class ="items">
+        <div>
+        <a href="{{url_for('showItemDesc', category=category.name, item=item.name) }}">{{item.name}}</a>
+        </div>
+    </div>
+    {% else %}
+    <p><em>No {{category.name}} Items yet available.</em></p>
+    {% endfor %}
+{% else %}
+    <div class="header">
+                    <h3>Latest Items</h3>
+    </div>
+        {% for item in items %}
+        <div class ="items">
+            <div>
+            <a href="{{url_for('showItemDesc', category=item.category.name, item=item.name) }}"><b>{{item.name}}</b></a> <em>({{item.category.name}})</em>
+            </div>
+        </div>
+        {% else %}
+    <p><em>No {{category.name}} Items yet available.</em></p>
+    {% endfor %}
+{% endif %}
+</div>
